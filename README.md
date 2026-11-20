@@ -12,6 +12,8 @@ Responsive English corporate website with four trading activities, company detai
 
 The enquiry composer does not submit or store data. Email is info@nbkdiesel.com, as supplied in the profile. The .ae domain does not imply a new email address.
 
+The proprietor's name is excluded from public pages. A commercial disclaimer is linked from the homepage, enquiry composer and legal/footer navigation. The disclaimer does not substitute for required licences, actual data-protection measures or the terms of a signed transaction agreement.
+
 ## Publication
 
 Publish `dist` using any static hosting provider. Domain connection and DNS are separate steps. Do not change existing email/MX records. Confirm domain ownership and the selected host before applying DNS changes. Update canonical and sitemap if the final domain changes.

@@ -23,3 +23,7 @@ Prepared on 20 November 2026. Website notices describe the current static site a
 - Infrastructure: https://www.cloudflare.com/privacypolicy/
 
 No change to domain or email DNS has been made.
+
+## Commercial disclaimer revision
+
+The proprietor's name has been removed from public website pages at the user's request. The company identity and business contact remain. A dedicated disclaimer now addresses non-binding enquiries, stock/specification/price limitations, transaction checks, illustrative media and graphics, email-composer operation, external material and mandatory liability carve-outs. It is linked from legal pages, footers, the homepage and the enquiry form. These texts require review against the actual company's licensing and data-handling arrangements; they do not establish compliance by themselves.

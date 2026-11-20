@@ -14,8 +14,11 @@ for(const file of fs.readdirSync(root).filter(f=>f.endsWith('.html'))){
  }
  assert.ok(!/fonts\.(googleapis|gstatic)\.com/.test(html),`${file}: remote fonts`);
  assert.ok(!html.includes('nbk-company-profile-2026.pdf'),`${file}: profile download`);
+ assert.ok(!/Nasser|Alshamsi|Binkhadem/i.test(html),`${file}: proprietor name`);
+ if(html.includes('<footer>'))assert.ok(html.includes('href="disclaimer.html"'),`${file}: missing disclaimer link`);
 }
 const main=fs.readFileSync(path.join(root,'index.html'),'utf8');assert.match(main,/<fieldset id="enquiry-fields" disabled>/);assert.match(main,/<noscript>/);assert.match(main,/class="menu" hidden/);
+assert.ok(fs.existsSync(path.join(root,'disclaimer.html')));assert.ok(!main.includes('<dt>Owner</dt>'));
 for(const asset of ['site.css','script.js','interactions.js'])assert.ok(main.includes(asset));
 for(const video of ['refinery-film.mp4','logistics-film.mp4']){const b=fs.readFileSync(path.join(root,'assets/media',video));assert.equal(b.toString('ascii',4,8),'ftyp',`${video}: MP4 signature`);}
 for(const p of ['DM-Sans-OFL.txt','Manrope-OFL.txt'])assert.match(fs.readFileSync(path.join(root,'assets/fonts',p),'utf8'),/SIL OPEN FONT LICENSE/i);
