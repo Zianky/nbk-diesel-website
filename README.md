@@ -10,7 +10,7 @@ Serve the `dist` folder with any static HTTP server. No build or installation is
 
 Responsive English corporate website with four trading activities, company details, an enquiry guide, two licensed industry films and direct email contact. Each product link selects the corresponding enquiry category. Local fonts and native video avoid third-party font requests and video embeds. Animations respect reduced-motion and data-saving preferences; mobile visitors see a static opening image unless they choose playback.
 
-The enquiry composer does not submit or store data. Email is info@nbkdiesel.com, as supplied in the profile. The .ae domain does not imply a new email address.
+The enquiry composer does not submit or store data. The contact and enquiry destination is info@nbkdiesel.ae, as explicitly requested by the user. Mailbox provisioning and delivery are separate from the static website.
 
 The proprietor's name is excluded from public pages. A commercial disclaimer is linked from the homepage, enquiry composer and legal/footer navigation. The disclaimer does not substitute for required licences, actual data-protection measures or the terms of a signed transaction agreement.
 
