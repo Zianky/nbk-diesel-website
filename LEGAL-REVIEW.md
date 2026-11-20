@@ -9,7 +9,7 @@ Prepared on 20 November 2026. Website notices describe the current static site a
 - Confirm whether a data protection officer is required and the appropriate regulator and complaint channel for the entity's actual licensing jurisdiction.
 - Review the website terms, Dubai court clause and limitation language against the applicable law; these do not override commercial contracts.
 - Confirm actual product scope, licences and substantiation before making quality, regulatory compliance or delivery guarantees. Existing website marketing was restated without absolute claims.
-- Confirm the platform's current cookie/security behaviour, providers and data locations before public launch. The private preview uses ChatGPT authentication; the website also requests Google Fonts. The site has no analytics, ads, browser storage code or direct form-submission backend.
+- Confirm the platform's current cookie/security behaviour, providers and data locations before public launch. The private preview uses ChatGPT authentication. Fonts are now served locally, together with their SIL Open Font License files. The site has no analytics, ads, browser storage code or direct form-submission backend.
 - Reassess notices and consent requirements before adding analytics, embedded maps, marketing tools, server-side forms, payments or file uploads.
 
 ## Sources
