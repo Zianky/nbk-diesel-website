@@ -14,6 +14,8 @@ The enquiry composer does not submit or store data. Email is info@nbkdiesel.com,
 
 The proprietor's name is excluded from public pages. A commercial disclaimer is linked from the homepage, enquiry composer and legal/footer navigation. The disclaimer does not substitute for required licences, actual data-protection measures or the terms of a signed transaction agreement.
 
+The enquiry composer includes optional specification, quantity, destination and delivery-period fields. Product selections carry through to the form, and the requirements diagram can open the corresponding detail field. These inputs are processed locally and included only in the prepared email; no enquiry database or analytics has been added. Run `node check-experience.cjs` to verify these connections. The native FAQ disclosures work without JavaScript.
+
 ## Publication
 
 Publish `dist` using any static hosting provider. Domain connection and DNS are separate steps. Do not change existing email/MX records. Confirm domain ownership and the selected host before applying DNS changes. Update canonical and sitemap if the final domain changes.

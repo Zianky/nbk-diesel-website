@@ -16,7 +16,9 @@ document.querySelector('#enquiry-form').addEventListener('submit', event => {
   const data = new FormData(event.currentTarget);
   const clean = key => String(data.get(key) || '').trim();
   const subject = `Commercial enquiry — ${clean('interest')} — ${clean('company').replace(/[\r\n]/g, ' ')}`;
-  const body = `Name: ${clean('name')}\nCompany: ${clean('company')}\nEmail: ${clean('email')}\nArea of interest: ${clean('interest')}\n\nRequirements:\n${clean('message')}`;
+  const details = [['specification','Product specification'],['quantity','Quantity and unit'],['destination','Destination'],['schedule','Delivery period']].filter(([key]) => clean(key)).map(([key,label]) => `${label}: ${clean(key)}`);
+  const detailText = details.length ? `\n\nProduct and delivery details:\n${details.join('\n')}` : '';
+  const body = `Name: ${clean('name')}\nCompany: ${clean('company')}\nEmail: ${clean('email')}\nArea of interest: ${clean('interest')}${detailText}\n\nRequirements:\n${clean('message')}`;
   document.querySelector('#prepared-enquiry').value = `To: info@nbkdiesel.com\nSubject: ${subject}\n\n${body}`;
   document.querySelector('#enquiry-preview').hidden = false;
   const status = document.querySelector('#form-status');
