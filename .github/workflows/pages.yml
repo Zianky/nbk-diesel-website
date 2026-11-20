@@ -1,0 +1,56 @@
+name: Publish NBK Diesel website
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'dist/**'
+      - 'scripts/prepare-github-pages.cjs'
+      - 'check-*.cjs'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out website
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Check pages and enquiry interactions
+        run: |
+          node check-site.cjs
+          node check-enquiry.cjs
+          node check-design.cjs
+          node check-experience.cjs
+          node --check dist/script.js
+          node --check dist/interactions.js
+          node --check dist/design.js
+          node --check dist/experience.js
+      - name: Configure GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: Prepare public website
+        env:
+          PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: node scripts/prepare-github-pages.cjs
+      - name: Upload public website
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: output/github-pages
+      - name: Publish to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
