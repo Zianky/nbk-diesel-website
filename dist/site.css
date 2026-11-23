@@ -15,3 +15,14 @@ footer{display:grid;grid-template-columns:1fr 1fr;gap:28px;padding:43px var(--gu
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.activity-list article:hover img{transform:none}}
 
 .site-disclaimer{padding:27px var(--gutter);border-top:1px solid var(--line);background:#eeebf2;display:flex;align-items:center;justify-content:space-between;gap:30px;font-size:13px;color:var(--muted)}.site-disclaimer p{max-width:850px;line-height:1.8}.site-disclaimer>a{color:var(--purple);border-bottom:1px solid #b7a2d2;white-space:nowrap;font-size:13px}@media(max-width:850px){.site-disclaimer{align-items:flex-start;flex-direction:column;gap:12px}}
+
+/* Mobile touch targets and legibility (phones and small tablets) */
+@media(max-width:850px){
+footer nav a,footer>div:nth-child(2) a,footer .footer-email,.legal-nav a,.site-disclaimer>a,.inline-link,.diagram-action,.product-enquiry,.hero-caption a,.image-note a,.media-disclosure a,.legal-page .eyebrow+h1~a.inline-link{display:inline-flex;align-items:center;min-height:44px}
+footer nav,footer>div:nth-child(2){gap:0 22px}
+.legal-nav{gap:0 18px}
+.legal-page p a,.legal-page li a{padding:9px 0}
+.hero-caption,.image-note,.media-disclosure,figcaption span,.interest-context>span,.diagram-note,.delivery-details>summary>span,.product-tab small{font-size:13px}
+.eyebrow,.form-kicker,footer>p{font-size:12px}
+.hero-bottom,.motion-button,.graphics-toggle,.requirement-controls button{font-size:13px}
+}
