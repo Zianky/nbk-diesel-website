@@ -11,6 +11,13 @@ function setup(data,valid=true,clipboardMode='ok'){
  const data={name:'Test User',company:'A&B + UAE',email:'test@example.com',interest:'Diesel Fuel Trading',message:'Price? Quantity 1000 MT\nDestination: Dubai & Jebel Ali + delivery'};
  const test=setup(data);assert.equal(test.el('#enquiry-fields').disabled,false);test.el('.product-enquiry').handlers.click();assert.equal(test.el('select[name="interest"]').value,'Offshore Crude Oil Trading');test.submit();const url=new URL(test.destination());assert.equal(url.protocol,'mailto:');assert.equal(url.pathname,'info@nbkdiesel.ae');assert.equal(url.searchParams.get('subject'),'Commercial enquiry — Diesel Fuel Trading — A&B + UAE');assert.ok(url.searchParams.get('body').includes(data.message));assert.ok(url.searchParams.get('body').includes(data.email));assert.equal(test.el('#enquiry-preview').hidden,false);assert.ok(test.el('#form-status').textContent.includes('Nothing has been sent'));await test.copy();assert.equal(test.copied(),test.el('#prepared-enquiry').value);
  const invalid=setup(data,false);invalid.submit();assert.equal(invalid.destination(),'');assert.equal(invalid.el('#enquiry-preview').hidden,true);
+ for (const key of ['name', 'company', 'message']) {
+   const blank = setup({...data, [key]: '   '});
+   blank.submit();
+   assert.equal(blank.destination(), '');
+   assert.equal(blank.el('#enquiry-preview').hidden, true);
+   assert.match(blank.el('#form-status').textContent, /^Enter your .+ before preparing your enquiry\.$/);
+ }
  const long=setup({...data,message:'A'.repeat(4000)});long.submit();assert.equal(long.destination(),'');assert.ok(long.el('#prepared-enquiry').value.includes('A'.repeat(4000)));assert.ok(long.el('#form-status').textContent.includes('too long'));
  const fallback=setup(data,true,'fail');fallback.submit();await fallback.copy();assert.equal(fallback.el('#prepared-enquiry').selected,true);
  const structured=setup({...data,specification:'Grade A & technical requirement',quantity:'1,000 MT',destination:'Jebel Ali',schedule:'December 2026'});structured.submit();const structuredBody=new URL(structured.destination()).searchParams.get('body');assert.ok(structuredBody.includes('Product specification: Grade A & technical requirement'));assert.ok(structuredBody.includes('Quantity and unit: 1,000 MT'));assert.ok(structuredBody.includes('Destination: Jebel Ali'));assert.ok(structuredBody.includes('Delivery period: December 2026'));
