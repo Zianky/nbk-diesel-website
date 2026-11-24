@@ -15,13 +15,27 @@ document.querySelector('#enquiry-form').addEventListener('submit', event => {
   if (!event.currentTarget.reportValidity()) return;
   const data = new FormData(event.currentTarget);
   const clean = key => String(data.get(key) || '').trim();
+  const status = document.querySelector('#form-status');
+  const preview = document.querySelector('#enquiry-preview');
+  const requiredText = [
+    ['name', 'your name'],
+    ['company', 'your company name'],
+    ['message', 'your requirements']
+  ];
+  const missing = requiredText.find(([key]) => !clean(key));
+  if (missing) {
+    const [key, label] = missing;
+    preview.hidden = true;
+    status.textContent = `Enter ${label} before preparing your enquiry.`;
+    event.currentTarget.elements?.namedItem(key)?.focus();
+    return;
+  }
   const subject = `Commercial enquiry — ${clean('interest')} — ${clean('company').replace(/[\r\n]/g, ' ')}`;
   const details = [['specification','Product specification'],['quantity','Quantity and unit'],['destination','Destination'],['schedule','Delivery period']].filter(([key]) => clean(key)).map(([key,label]) => `${label}: ${clean(key)}`);
   const detailText = details.length ? `\n\nProduct and delivery details:\n${details.join('\n')}` : '';
   const body = `Name: ${clean('name')}\nCompany: ${clean('company')}\nEmail: ${clean('email')}\nArea of interest: ${clean('interest')}${detailText}\n\nRequirements:\n${clean('message')}`;
   document.querySelector('#prepared-enquiry').value = `To: info@nbkdiesel.ae\nSubject: ${subject}\n\n${body}`;
-  document.querySelector('#enquiry-preview').hidden = false;
-  const status = document.querySelector('#form-status');
+  preview.hidden = false;
   status.textContent = 'Enquiry prepared for info@nbkdiesel.ae. Nothing has been sent. Review and send it in your email app, or use the copy below.';
   const target = `mailto:info@nbkdiesel.ae?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   // Long mailto links are not handled reliably by every browser and email app.
